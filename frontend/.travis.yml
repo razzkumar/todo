@@ -1,0 +1,16 @@
+
+branches:
+  only:
+    - master
+
+services:
+  - docker
+
+script:
+  - docker build -t "${DH_USERNAME}/dtodo:v1" .
+
+before_script:
+  - echo "${DH_PASSWORD}" | docker login -u "${DH_USERNAME}" --password-stdin
+
+after_success:
+  - docker push "${DH_USERNAME}/dtodo:v1"

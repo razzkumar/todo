@@ -1,0 +1,62 @@
+version: "3.4"
+services:
+  rabbitmq:
+    image: "rabbitmq:3.8.3-management-alpine"
+    #environment:
+      #RABBITMQ_DEFAULT_USER: razzkumar
+      #RABBITMQ_DEFAULT_PASS: topsecrectpassword
+    ports:
+      # The standard AMQP protocol port
+      - "5672:5672"
+      # HTTP management UI
+      - "15672:15672"
+    networks:
+      - todo_ng
+  api:
+    build:
+      context: api
+    ports:
+      - "8888:8888"
+    depends_on:
+      - rabbitmq
+    networks:
+      - todo_ng
+
+  db-service:
+    build:
+      context: db-service
+    depends_on:
+      - rabbitmq
+      - mongodb
+    networks:
+      - todo_ng
+
+
+  mongodb:
+    image: mongo:latest
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: razzkumar
+      MONGO_INITDB_ROOT_PASSWORD: topsecrectpassword
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - todo_ng
+
+  frontend:
+    build:
+      context: frontend
+      target: prod
+    ports:
+      - "5000:80"
+    depends_on:
+      - api
+    networks:
+      - todo_ng
+
+networks:
+  todo_ng: {}
+
+volumes:
+  mongodb_data:
