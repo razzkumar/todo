@@ -22,8 +22,8 @@ RUN go build -o main .
 
 
 ## copy only build file
-
-FROM golang:alpine as prod
+#FROM scratch
+FROM scratch
 
 WORKDIR /api
 
