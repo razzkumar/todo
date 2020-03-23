@@ -1,4 +1,4 @@
-# Golang React Micro-service
+# Golang React Micro-service Practice
 
 ```bash
 docker-compose up
