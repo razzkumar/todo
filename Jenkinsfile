@@ -3,8 +3,7 @@ pipeline {
   stages {
     stage('dev') {
       steps {
-        sh '''!#/bin/sh
-echo test'''
+        sh 'echo test'
       }
     }
 
