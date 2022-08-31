@@ -2,15 +2,15 @@
   "name": "todo-app",
   "version": "0.1.0",
   "engines": {
-    "node": "12.x"
+    "node": "16.x"
   },
   "private": true,
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.27.2",
     "prop-type": "^0.0.1",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "react-scripts": "3.0.1"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "5.0.1"
   },
   "scripts": {
     "start": "react-scripts start",

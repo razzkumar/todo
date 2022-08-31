@@ -15,13 +15,13 @@ class App extends React.Component {
       todos: props.todos
         ? props.todos
         : [
-            {
-              data: "Create a todo list",
-              isDone: false,
-              created_at: new Date(),
-              isStared: false
-            }
-          ],
+          {
+            data: "Create a todo list",
+            isDone: false,
+            created_at: new Date(),
+            isStared: false
+          }
+        ],
       searchText: "",
       isSearching: false,
       searchItems: [],
@@ -42,7 +42,7 @@ class App extends React.Component {
 
   handleSubmit = async e => {
     e.preventDefault();
-    const url  = `${API_HOST}/api/todos`
+    const url = `${API_HOST}/api/todos`
     let { todo, todos, isEditing } = this.state;
 
     if (todo && todo.trim().length) {
@@ -64,7 +64,7 @@ class App extends React.Component {
       } else {
         todos = [...todos, newTodo];
 
-        let res = await Axios.post(url,newTodo);
+        let res = await Axios.post(url, newTodo);
         console.log(res)
 
         this.setState({
@@ -90,18 +90,18 @@ class App extends React.Component {
     let todos = this.state.todos.map(todo =>
       todo.id === uid
         ? {
-            ...todo,
-            isDone: !todo.isDone
-          }
+          ...todo,
+          isDone: !todo.isDone
+        }
         : todo
     );
 
     let searchItems = this.state.searchItems.map(todo =>
       todo.id === uid
         ? {
-            ...todo,
-            isDone: !todo.isDone
-          }
+          ...todo,
+          isDone: !todo.isDone
+        }
         : todo
     );
 
@@ -112,18 +112,18 @@ class App extends React.Component {
     let todos = this.state.todos.map(todo =>
       todo.id === uid
         ? {
-            ...todo,
-            isStared: !todo.isStared
-          }
+          ...todo,
+          isStared: !todo.isStared
+        }
         : todo
     );
 
     let searchItems = this.state.searchItems.map(todo =>
       todo.id === uid
         ? {
-            ...todo,
-            isStared: !todo.isStared
-          }
+          ...todo,
+          isStared: !todo.isStared
+        }
         : todo
     );
 
@@ -219,9 +219,9 @@ class App extends React.Component {
               <div className="todo-list">
                 <h2>{currentTaskType}</h2>
                 {todoList && todoList.length ? (
-                  todoList.map(todo => (
+                  todoList.map((todo, i) => (
                     <Todo
-                      key={todo.id}
+                      key={todo.id + i}
                       todo={todo}
                       checkHandler={this.checkHandler}
                       staredHandler={this.staredHandler}
